@@ -1,0 +1,22 @@
+{% set footer = craft.globalSets()
+  .handle('branding')
+  .with(['footerLogo'])
+  .collect()
+  .first()
+%}
+
+{% set logoUrl = footer.footerLogo.collect().first().url() %}
+{% set logoAlt = footer.footerLogo.collect().first().altTag %}
+
+<footer class="w-full border-t border-white">
+  <div class="footercontainer flex flex-row justify-between px-128 py-12 "> 
+    <div class="container1">
+      <img src={{logoUrl}} alt={{logoAlt}} />
+    </div>
+    <div class="container2 justify-self-end">
+      <span>CONNECT AND SHARE</span>
+      <a href="" ><img src="./fb" /></a>
+      <a href="" ><img src="./tw" /></a>
+    </div>
+  </div>
+</footer>

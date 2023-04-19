@@ -1,0 +1,9 @@
+/.idea
+/vendor
+/node_modules
+.DS_Store
+*.Identifier
+/web/cpresources/*
+/web/dist/*
+/.vscode
+.devcontainer

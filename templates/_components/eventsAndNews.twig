@@ -1,0 +1,24 @@
+
+
+    <section id="eventsAndNews" class="px-128 py-12 ">
+    {% if eventsQuery|length %}
+        <ul>
+            {% for event in eventsQuery %}
+                <div class="event">
+                    <li><a href="{{ event.url }}">{{ event.title }}</a></li>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        <div class="container2 news">
+            {% if newsQuery|length %}
+                <ul>
+                    {% for news in newsQuery %}
+                        <div class="event">
+                            <li><a href="{{ news.url }}">{{ news.title }}</a></li>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </section>

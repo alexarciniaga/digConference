@@ -1,0 +1,26 @@
+{% set logo = branding.orgLogo.one() %}
+
+{% set header = craft.globalSets()
+  .handle('branding')
+  .with(['orgLogo'])
+  .collect()
+  .first()
+%}
+
+{% set logoUrl = header.orgLogo.collect().first().url() %}
+{% set logoAlt = header.orgLogo.collect().first().altTag %}
+
+
+<header class="grid grid-cols-3 justify-between w-full pos static px-128 py-12 items-center fixed">
+  <div class="container1">
+    <img src={{logoUrl}} alt={{logoAlt}} />
+  </div>
+  <div class="container2 flex items-center justify-around">
+    <span>About</br>Speakers</span>
+    <span>Schedule</span>
+  </div>
+  <div class="container3 justify-self-end">
+    <a class="btn" href="#"><button>REGISTER</button></a>
+  </div>
+
+</header>

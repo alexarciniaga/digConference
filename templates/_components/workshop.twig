@@ -1,0 +1,58 @@
+
+    
+{# Workshop Vars #}
+{% set workshopCat = workshopCat ?? '' %}
+{% set workshopQuery = craft.entries()
+    .section("workshops")
+    .limit(8)
+    .relatedTo(workshopCat)
+    .all()
+%}
+    <section id="workshop" class="border-t border-white px-128 py-12">
+        <div class="pretext">
+            <h2>Customize your Dig Experience</h2>
+            <p class="text-sm leading-loose">Choose from the options below to filter workshops available this year at <b>DIG2020!</b></p>
+        </div>
+        <div class="componentContainer">
+                {% if workshopOptions|length %}
+                    <div class="sorterContainer py-[22px] bg-custom-orange">
+                            <script>
+                            document.addEventListener('DOMContentLoaded', ()=> {
+                                const boxes = document.querySelectorAll('.catCheckbox');
+                                for(const box of boxes) {
+                                    box.addEventListener('change', ()=> {
+                                        box.toggleAttribute('checked');
+                                        let checkedBoxes = document.querySelectorAll('.catCheckbox:checked');
+                                        let checkedFinal = [];
+                                        for (const checkedBox of checkedBoxes) {
+                                            checkedFinal.push(checkedBox.value)
+                                        }
+                                        console.log(checkedFinal)
+
+                                        // Not sure how to link this js array back to workshopCat, but didn't troubleshoot long
+                                        
+                                    })
+                                }
+                            })
+                
+                            </script>
+                        <div class="sorter flex justify-around items-center">
+                            {% for options in workshopOptions %}
+                            <div class="catContainer">
+                                <input class="catCheckbox" id="{{ options.slug }}-checkbox" data-category="{{ options.slug }}" type="checkbox" value="{{ options.id }}" >
+                                <label for="{{ options.slug }}-checkbox">{{ options.title }} </label>
+                            </div>
+                            {% endfor %}
+                            </div>
+                    </div>
+                {% endif %}
+            
+            {% if workshopQuery|length %}
+                <div class="workshopContainer">
+                    {% for item in workshopQuery %}
+                            <a href="{{ item.url }}">{{ item.title }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
